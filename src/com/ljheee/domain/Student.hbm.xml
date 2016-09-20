@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-5 15:09:57 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.ljheee.domain.Student" table="STUDENT">
+    
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        
+        <set name="courses" table="STUDENT_COURSE" inverse="true" lazy="true" access="field" cascade="save-update">
+            <key>
+            <!-- Student表里的id，对于 "STUDENT_COURSE"表里面的STUDENT_ID-->
+                <column name="STUDENT_ID" />
+            </key>
+            <many-to-many column="COURSE_ID" class="com.ljheee.domain.Course"/>
+        </set>
+        
+    </class>
+</hibernate-mapping>
